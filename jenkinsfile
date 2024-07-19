@@ -3,19 +3,27 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'hostname -i'
+                script {
+                    def hostnameOutput = sh(script: 'hostname -I', returnStdout: true).trim()
+                    echo "Hostname: ${hostnameOutput}"
+                }
             }
         }
         stage('Test') {
             steps {
-                sh 'free -gh'
+                script {
+                    def freeOutput = sh(script: 'free -gh', returnStdout: true).trim()
+                    echo "Memory Info: ${freeOutput}"
+                }
             }
         }
         stage('Deploy') {
             steps {
-                sh 'df -kh'
+                script {
+                    def dfOutput = sh(script: 'df -kh', returnStdout: true).trim()
+                    echo "Disk Usage: ${dfOutput}"
+                }
             }
         }
     }
 }
-
