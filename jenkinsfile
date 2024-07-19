@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'hostname -I'
+                sh 'hostname -i'
             }
         }
         stage('Test') {
